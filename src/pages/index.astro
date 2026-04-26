@@ -1,11 +1,582 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const navItems = ['Plataforma', 'Soluciones', 'Precios', 'Recursos'];
+
+const trustedBy = ['Nova School', 'AprendeHoy', 'ScaleLab', 'People Ops Latam', 'Creador Pro'];
+
+const metrics = [
+	{ value: '+38%', label: 'más finalización de cursos' },
+	{ value: '4.9/5', label: 'satisfacción promedio del alumno' },
+	{ value: '3x', label: 'más velocidad para lanzar nuevas cohortes' },
+];
+
+const audiences = [
+	{
+		title: 'Creadores que venden conocimiento',
+		copy:
+			'Construye embudos, páginas de venta y experiencias premium sin depender de cinco herramientas distintas.',
+	},
+	{
+		title: 'Academias con programas cohort-based',
+		copy:
+			'Coordina clases en vivo, entregas, certificados y seguimiento académico con una operación clara para todo el equipo.',
+	},
+	{
+		title: 'Empresas que forman talento interno',
+		copy:
+			'Activa onboarding, upskilling y rutas de aprendizaje medibles para equipos distribuidos en una sola consola.',
+	},
+];
+
+const capabilities = [
+	{
+		eyebrow: 'Cursos y cohortes',
+		title: 'Diseña experiencias de aprendizaje que sí se terminan',
+		copy:
+			'Lecciones multimedia, sesiones en vivo, tareas, evaluaciones y certificados se conectan en un mismo recorrido.',
+		points: ['Rutas por niveles y objetivos', 'Evaluaciones con retroalimentación', 'Certificados personalizables'],
+	},
+	{
+		eyebrow: 'Ventas y conversión',
+		title: 'Convierte visitas en matrículas con menos fricción',
+		copy:
+			'Landing pages, checkout, cupones, bundles y automatizaciones listos para optimizar cada campaña.',
+		points: ['Checkout optimizado para mobile', 'Upsells y planes de pago', 'Campañas por email y remarketing'],
+	},
+	{
+		eyebrow: 'Comunidad y retención',
+		title: 'Mantén a los alumnos activos mucho después de la compra',
+		copy:
+			'Foros, anuncios, hitos, sesiones grupales y paneles de progreso pensados para generar avance real.',
+		points: ['Espacios privados por programa', 'Recordatorios automatizados', 'Seguimiento por cohortes y segmentos'],
+	},
+];
+
+const operatingCards = [
+	{
+		title: 'Panel ejecutivo',
+		copy: 'Mide ingresos, activación, asistencia y finalización desde una sola vista.',
+	},
+	{
+		title: 'Automatizaciones',
+		copy: 'Dispara accesos, recordatorios y mensajes según comportamiento real del estudiante.',
+	},
+	{
+		title: 'Equipo alineado',
+		copy: 'Marketing, soporte y academia operan sobre la misma información.',
+	},
+];
+
+const launchSteps = [
+	{
+		step: '01',
+		title: 'Estructura tu oferta',
+		copy: 'Organiza cursos, cohortes, membresías o programas corporativos según tu modelo de negocio.',
+	},
+	{
+		step: '02',
+		title: 'Personaliza tu experiencia',
+		copy: 'Ajusta la marca de Kurzzo, crea páginas de venta y define automatizaciones sin tocar backend.',
+	},
+	{
+		step: '03',
+		title: 'Escala con datos',
+		copy: 'Usa analítica accionable para mejorar conversión, retención y resultados de aprendizaje.',
+	},
+];
+
+const plans = [
+	{
+		name: 'Start',
+		price: 'US$49',
+		description: 'Para creadores que quieren lanzar su primera academia digital.',
+		features: ['1 academia', 'Cursos ilimitados', 'Checkout integrado', 'Email básico'],
+	},
+	{
+		name: 'Growth',
+		price: 'US$149',
+		description: 'Para academias que ya venden y necesitan operación más robusta.',
+		features: ['Cohortes en vivo', 'Automatizaciones avanzadas', 'Analítica por segmentos', 'Roles de equipo'],
+	},
+	{
+		name: 'Scale',
+		price: 'Custom',
+		description: 'Para empresas y operaciones educativas con múltiples marcas o unidades.',
+		features: ['SSO y permisos avanzados', 'Espacios multi-tenant', 'Integraciones dedicadas', 'Acompañamiento estratégico'],
+	},
+];
+
+const faqs = [
+	{
+		question: '¿Kurzzo sirve para cursos grabados y programas en vivo?',
+		answer:
+			'Sí. Puedes combinar contenido on-demand, sesiones en vivo, tareas, certificados y comunidad dentro del mismo producto.',
+	},
+	{
+		question: '¿Puedo vender en distintos países y monedas?',
+		answer:
+			'Sí. Kurzzo está pensado para audiencias globales, con pagos online, ofertas flexibles y una experiencia móvil sólida.',
+	},
+	{
+		question: '¿Se puede usar para capacitación interna?',
+		answer:
+			'Sí. También funciona para onboarding, academias corporativas y rutas de aprendizaje por equipos o sedes.',
+	},
+	{
+		question: '¿Necesito un equipo técnico para operar la plataforma?',
+		answer:
+			'No. La base está pensada para equipos de formación y marketing. Si necesitas algo más complejo, puedes extenderlo con integraciones.',
+	},
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+	title="Kurzzo | La plataforma e-learning para lanzar y escalar tu academia online"
+	description="Kurzzo es una plataforma e-learning en español para vender cursos, coordinar cohortes y construir experiencias de aprendizaje premium."
+>
+	<div class="relative isolate overflow-hidden">
+		<div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[38rem] bg-[radial-gradient(circle_at_top,rgba(22,163,74,0.22),transparent_58%)]"></div>
+		<div class="pointer-events-none absolute right-0 top-40 -z-10 h-80 w-80 rounded-full bg-brand-200/50 blur-3xl"></div>
+
+		<header class="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-6 lg:px-8">
+			<a href="#" class="flex items-center gap-3 text-lg font-semibold tracking-tight text-slate-950">
+				<span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-brand-600 text-base font-black text-white shadow-lg shadow-brand-700/20">
+					K
+				</span>
+				Kurzzo
+			</a>
+
+			<nav class="hidden items-center gap-8 text-sm font-medium text-slate-700 lg:flex">
+				{
+					navItems.map((item) => (
+						<a href={`#${item.toLowerCase()}`} class="transition hover:text-slate-950">{item}</a>
+					))
+				}
+			</nav>
+
+			<div class="hidden items-center gap-3 lg:flex">
+				<a href="#precios" class="text-sm font-semibold text-slate-700 transition hover:text-slate-950">
+					Ver planes
+				</a>
+				<a
+					href="#cta"
+					class="rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+				>
+					Agenda una demo
+				</a>
+			</div>
+		</header>
+
+		<main>
+			<section class="px-6 pb-18 pt-8 lg:px-8 lg:pb-24">
+				<div class="mx-auto grid w-full max-w-7xl items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
+					<div class="max-w-2xl">
+						<div class="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white/80 px-4 py-2 text-sm font-medium text-brand-900 shadow-sm shadow-brand-950/5 backdrop-blur">
+							<span class="h-2 w-2 rounded-full bg-brand-500"></span>
+							Plataforma e-learning para creadores, academias y equipos
+						</div>
+						<h1 class="max-w-4xl text-5xl font-black leading-[0.95] tracking-[-0.04em] text-slate-950 sm:text-6xl lg:text-7xl">
+							Convierte tu conocimiento en la próxima gran academia online.
+						</h1>
+						<p class="mt-6 max-w-xl text-lg leading-8 text-slate-600 sm:text-xl">
+							Kurzzo reúne cursos, cohortes en vivo, comunidad, pagos, certificados y
+							automatizaciones en una sola plataforma para vender mejor y enseñar con más impacto.
+						</p>
+
+						<div class="mt-10 flex flex-col gap-4 sm:flex-row">
+							<a
+								href="#cta"
+								class="inline-flex items-center justify-center rounded-full bg-brand-600 px-6 py-4 text-base font-semibold text-white shadow-lg shadow-brand-700/25 transition hover:bg-brand-700"
+							>
+								Comienza gratis
+							</a>
+							<a
+								href="#plataforma"
+								class="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white/80 px-6 py-4 text-base font-semibold text-slate-900 backdrop-blur transition hover:border-slate-400"
+							>
+								Explorar la plataforma
+							</a>
+						</div>
+
+						<div class="mt-10 grid gap-5 border-t border-slate-200 pt-8 sm:grid-cols-3">
+							{
+								metrics.map((metric) => (
+									<div>
+										<p class="text-3xl font-black tracking-[-0.04em] text-slate-950">{metric.value}</p>
+										<p class="mt-2 text-sm leading-6 text-slate-600">{metric.label}</p>
+									</div>
+								))
+							}
+						</div>
+					</div>
+
+					<div class="relative">
+						<div class="absolute inset-x-10 top-6 -z-10 h-72 rounded-full bg-brand-200/80 blur-3xl"></div>
+						<div class="rounded-[2rem] border border-white/70 bg-white/85 p-5 shadow-[0_32px_120px_-40px_rgba(20,83,45,0.45)] backdrop-blur-xl sm:p-7">
+							<div class="rounded-[1.6rem] bg-slate-950 p-6 text-white">
+								<div class="flex items-center justify-between">
+									<div>
+										<p class="text-sm font-medium text-white/70">Dashboard de lanzamiento</p>
+										<h2 class="mt-2 text-2xl font-bold">Máster de Productividad Creativa</h2>
+									</div>
+									<div class="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-brand-200">
+										Inscripciones abiertas
+									</div>
+								</div>
+
+								<div class="mt-8 grid gap-4 sm:grid-cols-3">
+									<div class="rounded-3xl bg-white/8 p-4">
+										<p class="text-sm text-white/65">Nuevas matrículas</p>
+										<p class="mt-3 text-3xl font-black">184</p>
+										<p class="mt-2 text-xs text-brand-200">+22% esta semana</p>
+									</div>
+									<div class="rounded-3xl bg-brand-500/14 p-4">
+										<p class="text-sm text-white/65">Clases en vivo</p>
+										<p class="mt-3 text-3xl font-black">12</p>
+										<p class="mt-2 text-xs text-brand-200">Con agenda y recordatorios</p>
+									</div>
+									<div class="rounded-3xl bg-white/8 p-4">
+										<p class="text-sm text-white/65">Finalización</p>
+										<p class="mt-3 text-3xl font-black">81%</p>
+										<p class="mt-2 text-xs text-brand-200">Muy por encima del promedio</p>
+									</div>
+								</div>
+
+								<div class="mt-6 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+									<div class="rounded-[1.5rem] bg-white p-5 text-slate-950">
+										<div class="flex items-center justify-between">
+											<p class="text-sm font-semibold text-slate-500">Embudo de conversión</p>
+											<p class="text-sm font-semibold text-brand-700">3.8% CVR</p>
+										</div>
+										<div class="mt-6 space-y-4">
+											<div>
+												<div class="mb-2 flex items-center justify-between text-sm text-slate-600">
+													<span>Visitas a la landing</span>
+													<span>24.120</span>
+												</div>
+												<div class="h-3 rounded-full bg-brand-100">
+													<div class="h-3 w-[88%] rounded-full bg-brand-500"></div>
+												</div>
+											</div>
+											<div>
+												<div class="mb-2 flex items-center justify-between text-sm text-slate-600">
+													<span>Leads calificados</span>
+													<span>3.460</span>
+												</div>
+												<div class="h-3 rounded-full bg-brand-100">
+													<div class="h-3 w-[57%] rounded-full bg-brand-600"></div>
+												</div>
+											</div>
+											<div>
+												<div class="mb-2 flex items-center justify-between text-sm text-slate-600">
+													<span>Matrículas activas</span>
+													<span>916</span>
+												</div>
+												<div class="h-3 rounded-full bg-brand-100">
+													<div class="h-3 w-[34%] rounded-full bg-slate-950"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="rounded-[1.5rem] border border-white/10 bg-white/8 p-5">
+										<p class="text-sm font-semibold text-white/70">Automatizaciones activas</p>
+										<ul class="mt-5 space-y-3 text-sm text-white/90">
+											<li class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+												Bienvenida + acceso inmediato tras el pago
+											</li>
+											<li class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+												Recordatorio 24h antes de cada clase
+											</li>
+											<li class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+												Reactivación para alumnos con progreso bajo
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="mt-5 grid gap-4 sm:grid-cols-2">
+								<div class="rounded-[1.5rem] border border-brand-100 bg-brand-50 p-5">
+									<p class="text-sm font-semibold text-brand-800">Experiencia del estudiante</p>
+									<p class="mt-3 text-lg font-bold text-slate-950">Panel de avance, comunidad y próximos hitos</p>
+									<p class="mt-2 text-sm leading-6 text-slate-600">
+										Cada alumno ve exactamente qué sigue, qué ya completó y dónde pedir ayuda.
+									</p>
+								</div>
+								<div class="rounded-[1.5rem] border border-slate-200 bg-white p-5">
+									<p class="text-sm font-semibold text-slate-500">Soporte operativo</p>
+									<p class="mt-3 text-lg font-bold text-slate-950">Menos hojas de cálculo. Más foco en enseñar.</p>
+									<p class="mt-2 text-sm leading-6 text-slate-600">
+										Los equipos gestionan accesos, cohortes y métricas desde una sola interfaz.
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="absolute -bottom-6 -left-6 hidden rounded-[1.5rem] border border-white/70 bg-white/90 p-5 shadow-xl shadow-brand-950/10 backdrop-blur lg:block">
+							<p class="text-sm font-semibold text-slate-500">Ingresos del mes</p>
+							<p class="mt-2 text-3xl font-black tracking-[-0.04em] text-slate-950">US$48.200</p>
+							<p class="mt-2 text-sm text-brand-700">+31% vs. el mes anterior</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="border-y border-slate-200/80 bg-white/70 px-6 py-6 backdrop-blur lg:px-8">
+				<div class="mx-auto flex w-full max-w-7xl flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+					<p class="text-sm font-semibold uppercase tracking-[0.24em] text-slate-500">
+						Equipos que podrían crecer con Kurzzo
+					</p>
+					<div class="grid grid-cols-2 gap-4 text-sm font-semibold text-slate-700 sm:grid-cols-3 lg:flex lg:flex-wrap lg:justify-end lg:gap-8">
+						{
+							trustedBy.map((brand) => (
+								<span class="rounded-full border border-slate-200 bg-white px-4 py-2 text-center">
+									{brand}
+								</span>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<section id="plataforma" class="px-6 py-24 lg:px-8">
+				<div class="mx-auto w-full max-w-7xl">
+					<div class="max-w-3xl">
+						<p class="text-sm font-semibold uppercase tracking-[0.24em] text-brand-700">Plataforma</p>
+						<h2 class="mt-4 text-4xl font-black tracking-[-0.04em] text-slate-950 sm:text-5xl">
+							La base operativa para vender, enseñar y fidelizar desde un mismo lugar.
+						</h2>
+						<p class="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+							En vez de unir herramientas sueltas, Kurzzo conecta adquisición, aprendizaje,
+							comunidad y analítica en una experiencia consistente para el equipo y para el alumno.
+						</p>
+					</div>
+
+					<div class="mt-14 grid gap-6 lg:grid-cols-3">
+						{
+							capabilities.map((item, index) => (
+								<article class={`rounded-[2rem] border p-8 shadow-lg shadow-brand-950/5 ${index === 1 ? 'border-brand-200 bg-brand-50' : 'border-slate-200 bg-white'}`}>
+									<p class="text-sm font-semibold uppercase tracking-[0.22em] text-brand-700">{item.eyebrow}</p>
+									<h3 class="mt-4 text-2xl font-bold tracking-[-0.03em] text-slate-950">{item.title}</h3>
+									<p class="mt-4 text-base leading-7 text-slate-600">{item.copy}</p>
+									<ul class="mt-6 space-y-3 text-sm leading-6 text-slate-700">
+										{item.points.map((point) => <li class="flex gap-3"><span class="mt-2 h-2.5 w-2.5 rounded-full bg-brand-500"></span><span>{point}</span></li>)}
+									</ul>
+								</article>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<section id="soluciones" class="bg-slate-950 px-6 py-24 text-white lg:px-8">
+				<div class="mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+					<div>
+						<p class="text-sm font-semibold uppercase tracking-[0.24em] text-brand-300">Soluciones</p>
+						<h2 class="mt-4 text-4xl font-black tracking-[-0.04em] sm:text-5xl">
+							Un mismo producto para modelos educativos muy distintos.
+						</h2>
+						<p class="mt-6 text-lg leading-8 text-white/70">
+							Desde una mentoría premium hasta una universidad corporativa, Kurzzo se adapta sin
+							perder simplicidad ni velocidad de ejecución.
+						</p>
+					</div>
+
+					<div class="grid gap-5">
+						{
+							audiences.map((audience) => (
+								<article class="rounded-[1.8rem] border border-white/10 bg-white/5 p-7 backdrop-blur">
+									<h3 class="text-2xl font-bold tracking-[-0.03em]">{audience.title}</h3>
+									<p class="mt-3 text-base leading-7 text-white/70">{audience.copy}</p>
+								</article>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<section class="px-6 py-24 lg:px-8">
+				<div class="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+					<div class="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-lg shadow-brand-950/5">
+						<p class="text-sm font-semibold uppercase tracking-[0.24em] text-brand-700">Operación</p>
+						<h2 class="mt-4 text-4xl font-black tracking-[-0.04em] text-slate-950 sm:text-5xl">
+							Administra toda tu operación educativa sin fricción.
+						</h2>
+						<p class="mt-6 text-lg leading-8 text-slate-600">
+							Controla cohortes, instructores, pagos, soporte, alumnos inactivos y resultados
+							comerciales sin cambiar de contexto cada cinco minutos.
+						</p>
+
+						<div class="mt-10 grid gap-4 sm:grid-cols-2">
+							<div class="rounded-[1.6rem] bg-brand-50 p-5">
+								<p class="text-sm font-semibold text-brand-800">Cohorte próxima</p>
+								<p class="mt-3 text-xl font-bold text-slate-950">Diseño de producto digital</p>
+								<p class="mt-2 text-sm leading-6 text-slate-600">
+									148 inscritos, 3 instructores, onboarding programado y comunidad activa.
+								</p>
+							</div>
+							<div class="rounded-[1.6rem] bg-slate-950 p-5 text-white">
+								<p class="text-sm font-semibold text-white/70">Alertas inteligentes</p>
+								<p class="mt-3 text-xl font-bold">27 alumnos necesitan seguimiento</p>
+								<p class="mt-2 text-sm leading-6 text-white/70">
+									Kurzzo detecta caídas de progreso y sugiere campañas de reactivación.
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="grid gap-5">
+						{
+							operatingCards.map((card) => (
+								<article class="rounded-[1.8rem] border border-slate-200 bg-white p-7 shadow-lg shadow-brand-950/5">
+									<h3 class="text-2xl font-bold tracking-[-0.03em] text-slate-950">{card.title}</h3>
+									<p class="mt-3 text-base leading-7 text-slate-600">{card.copy}</p>
+								</article>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<section class="bg-white px-6 py-24 lg:px-8">
+				<div class="mx-auto w-full max-w-7xl">
+					<div class="max-w-3xl">
+						<p class="text-sm font-semibold uppercase tracking-[0.24em] text-brand-700">Implementación</p>
+						<h2 class="mt-4 text-4xl font-black tracking-[-0.04em] text-slate-950 sm:text-5xl">
+							Lanza una experiencia sólida en semanas, no en trimestres.
+						</h2>
+						<p class="mt-6 text-lg leading-8 text-slate-600">
+							El camino de salida está diseñado para que tu equipo publique rápido, pruebe
+							mensajes y escale con menos dependencia técnica.
+						</p>
+					</div>
+
+					<div class="mt-14 grid gap-6 lg:grid-cols-3">
+						{
+							launchSteps.map((item) => (
+								<article class="rounded-[2rem] border border-slate-200 bg-brand-50 p-8">
+									<p class="text-sm font-black uppercase tracking-[0.24em] text-brand-700">{item.step}</p>
+									<h3 class="mt-5 text-2xl font-bold tracking-[-0.03em] text-slate-950">{item.title}</h3>
+									<p class="mt-4 text-base leading-7 text-slate-600">{item.copy}</p>
+								</article>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<section id="precios" class="px-6 py-24 lg:px-8">
+				<div class="mx-auto w-full max-w-7xl">
+					<div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+						<div class="max-w-3xl">
+							<p class="text-sm font-semibold uppercase tracking-[0.24em] text-brand-700">Precios</p>
+							<h2 class="mt-4 text-4xl font-black tracking-[-0.04em] text-slate-950 sm:text-5xl">
+								Planes simples para crecer desde tu primer curso hasta una operación global.
+							</h2>
+						</div>
+						<p class="max-w-xl text-base leading-7 text-slate-600">
+							Empieza liviano, activa automatizaciones cuando lo necesites y escala sin migrar de
+							plataforma en el momento crítico.
+						</p>
+					</div>
+
+					<div class="mt-14 grid gap-6 lg:grid-cols-3">
+						{
+							plans.map((plan, index) => (
+								<article class={`rounded-[2rem] border p-8 shadow-lg shadow-brand-950/5 ${index === 1 ? 'border-brand-300 bg-slate-950 text-white' : 'border-slate-200 bg-white text-slate-950'}`}>
+									<div class="flex items-center justify-between">
+										<h3 class="text-2xl font-bold tracking-[-0.03em]">{plan.name}</h3>
+										{index === 1 && (
+											<span class="rounded-full bg-brand-500/20 px-3 py-1 text-xs font-semibold text-brand-200">
+												Más elegido
+											</span>
+										)}
+									</div>
+									<p class={`mt-4 text-4xl font-black tracking-[-0.04em] ${index === 1 ? 'text-white' : 'text-slate-950'}`}>{plan.price}</p>
+									<p class={`mt-4 text-base leading-7 ${index === 1 ? 'text-white/70' : 'text-slate-600'}`}>{plan.description}</p>
+									<ul class={`mt-6 space-y-3 text-sm leading-6 ${index === 1 ? 'text-white/90' : 'text-slate-700'}`}>
+										{plan.features.map((feature) => <li class="flex gap-3"><span class={`mt-2 h-2.5 w-2.5 rounded-full ${index === 1 ? 'bg-brand-300' : 'bg-brand-500'}`}></span><span>{feature}</span></li>)}
+									</ul>
+									<a
+										href="#cta"
+										class={`mt-8 inline-flex w-full items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition ${index === 1 ? 'bg-brand-500 text-white hover:bg-brand-400' : 'bg-slate-950 text-white hover:bg-slate-800'}`}
+									>
+										Solicitar acceso
+									</a>
+								</article>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<section id="recursos" class="bg-white px-6 py-24 lg:px-8">
+				<div class="mx-auto w-full max-w-7xl">
+					<div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+						<div>
+							<p class="text-sm font-semibold uppercase tracking-[0.24em] text-brand-700">Preguntas frecuentes</p>
+							<h2 class="mt-4 text-4xl font-black tracking-[-0.04em] text-slate-950 sm:text-5xl">
+								Lo esencial para decidir si Kurzzo encaja con tu operación.
+							</h2>
+						</div>
+
+						<div class="grid gap-4">
+							{
+								faqs.map((faq) => (
+									<article class="rounded-[1.8rem] border border-slate-200 bg-brand-50 p-7">
+										<h3 class="text-xl font-bold tracking-[-0.03em] text-slate-950">{faq.question}</h3>
+										<p class="mt-3 text-base leading-7 text-slate-600">{faq.answer}</p>
+									</article>
+								))
+							}
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="cta" class="px-6 pb-24 pt-12 lg:px-8">
+				<div class="mx-auto w-full max-w-7xl rounded-[2.5rem] bg-slate-950 px-8 py-14 text-white shadow-[0_32px_120px_-40px_rgba(15,23,42,0.75)] sm:px-12">
+					<div class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+						<div class="max-w-3xl">
+							<p class="text-sm font-semibold uppercase tracking-[0.24em] text-brand-300">Kurzzo</p>
+							<h2 class="mt-4 text-4xl font-black tracking-[-0.04em] sm:text-5xl">
+								Haz que aprender contigo se vea y se sienta como un producto premium.
+							</h2>
+							<p class="mt-5 text-lg leading-8 text-white/70">
+								Lanza tu academia online, mejora la conversión y entrega una experiencia de
+								aprendizaje que tus alumnos quieran terminar y recomendar.
+							</p>
+						</div>
+						<div class="flex flex-col gap-4 sm:flex-row lg:flex-col">
+							<a
+								href="#"
+								class="inline-flex items-center justify-center rounded-full bg-brand-500 px-6 py-4 text-base font-semibold text-white transition hover:bg-brand-400"
+							>
+								Reservar demo
+							</a>
+							<a
+								href="#precios"
+								class="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-4 text-base font-semibold text-white transition hover:bg-white/10"
+							>
+								Ver planes
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer class="border-t border-slate-200 bg-white/80 px-6 py-8 backdrop-blur lg:px-8">
+			<div class="mx-auto flex w-full max-w-7xl flex-col gap-4 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+				<p>© 2026 Kurzzo. Plataforma e-learning para equipos que enseñan con ambición.</p>
+				<div class="flex gap-6">
+					<a href="#plataforma" class="transition hover:text-slate-950">Producto</a>
+					<a href="#precios" class="transition hover:text-slate-950">Precios</a>
+					<a href="#recursos" class="transition hover:text-slate-950">FAQ</a>
+				</div>
+			</div>
+		</footer>
+	</div>
 </Layout>
